@@ -40,7 +40,7 @@ class _WeatherPageState extends State<WeatherPage> {
   String getWeatherAnimation(String? mainCondition) {
     if (mainCondition == null) return 'assets/loading.json';
 
-    return switch (mainCondition) {
+    return switch (mainCondition.toLowerCase()) {
       "clouds" => 'assets/cloud.json',
       "mist" => 'assets/cloud.json',
       "smoke" => 'assets/cloud.json',
@@ -56,6 +56,32 @@ class _WeatherPageState extends State<WeatherPage> {
     };
   }
 
+  Color getBackgroundColor(String? mainCondition) {
+    if (mainCondition == null) return Color.fromARGB(255, 184, 187, 199);
+
+    return switch (mainCondition.toLowerCase()) {
+      "clouds" => Color.fromARGB(255, 184, 187, 199),
+      "mist" => Color.fromARGB(255, 184, 187, 199),
+      "smoke" => Color.fromARGB(255, 184, 187, 199),
+      "haze" => Color.fromARGB(255, 184, 187, 199),
+      "dust" => Color.fromARGB(255, 184, 187, 199),
+      "fog" => Color.fromARGB(255, 184, 187, 199),
+      "rain" => Color.fromARGB(255, 184, 187, 199),
+      "drizzle" => Color.fromARGB(255, 184, 187, 199),
+      "shower rain" => Color.fromARGB(255, 184, 187, 199),
+      "thunderstorm" => Color.fromARGB(255, 184, 187, 199),
+      "clear" => Color.fromARGB(255, 255, 245, 218),
+      _ => Color.fromARGB(255, 184, 187, 199),
+    };
+  }
+
+  Color getTextColor(String mainCondition) {
+    return switch (mainCondition.toLowerCase()) {
+      "clear" => Color.fromARGB(255, 70, 66, 60),
+      _ => Color.fromARGB(255, 48, 52, 66),
+    };
+  }
+
   // Initial State
   @override
   void initState() {
@@ -68,7 +94,7 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 191, 195, 209),
+      backgroundColor: getBackgroundColor(_weather?.mainCondition),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -83,9 +109,9 @@ class _WeatherPageState extends State<WeatherPage> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Oswald",
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w300,
                     fontSize: 24,
-                    color: Colors.white,
+                    color: getTextColor(_weather?.mainCondition ?? ""),
                   ),
                 ),
               ),
@@ -107,21 +133,21 @@ class _WeatherPageState extends State<WeatherPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "${_weather?.temperature.round() ?? "??"}°F",
+                      "${_weather?.temperature.round() ?? "??"}F",
                       style: TextStyle(
-                        fontFamily: "Righteous",
+                        fontFamily: "Oswald",
                         fontWeight: FontWeight.w600,
-                        fontSize: 64,
-                        color: Colors.white,
+                        fontSize: 72,
+                        color: getTextColor(_weather?.mainCondition ?? ""),
                       ),
                     ),
                     Text(
                       (_weather?.mainCondition ?? "Unknown").toUpperCase(),
                       style: TextStyle(
                         fontFamily: "Oswald",
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w300,
                         fontSize: 24,
-                        color: Colors.white,
+                        color: getTextColor(_weather?.mainCondition ?? ""),
                       ),
                     ),
                   ],
