@@ -79,9 +79,14 @@ class _WeatherPageState extends State<WeatherPage> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Center(
                 child: Text(
-                  _weather?.cityName ?? "Loading City...",
+                  (_weather?.cityName ?? "Loading City...").toUpperCase(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 36, color: Colors.white),
+                  style: TextStyle(
+                    fontFamily: "Oswald",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -103,11 +108,21 @@ class _WeatherPageState extends State<WeatherPage> {
                   children: [
                     Text(
                       "${_weather?.temperature.round() ?? "??"}°F",
-                      style: TextStyle(fontSize: 48, color: Colors.white),
+                      style: TextStyle(
+                        fontFamily: "Righteous",
+                        fontWeight: FontWeight.w600,
+                        fontSize: 64,
+                        color: Colors.white,
+                      ),
                     ),
                     Text(
-                      _weather?.mainCondition ?? "Unknown",
-                      style: TextStyle(fontSize: 24, color: Colors.white),
+                      (_weather?.mainCondition ?? "Unknown").toUpperCase(),
+                      style: TextStyle(
+                        fontFamily: "Oswald",
+                        fontWeight: FontWeight.w600,
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
