@@ -68,37 +68,50 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      backgroundColor: Color.fromARGB(255, 191, 195, 209),
+      body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Animated Weather Icon
-            Lottie.asset(
-              getWeatherAnimation(_weather?.mainCondition),
-              height: 200,
-            ),
-
             // City Name
-            Text('City Name', style: TextStyle(fontSize: 24)),
-            Text(
-              _weather?.cityName ?? "Loading City...",
-              style: TextStyle(fontSize: 36),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Center(
+                child: Text(
+                  _weather?.cityName ?? "Loading City...",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 36, color: Colors.white),
+                ),
+              ),
             ),
-            SizedBox(height: 20),
 
-            // Temperature
-            Text('Temperature', style: TextStyle(fontSize: 24)),
-            Text(
-              "${_weather?.temperature.round() ?? "??"}°F",
-              style: TextStyle(fontSize: 36),
+            // Animated Weather Icon
+            Center(
+              child: Lottie.asset(
+                getWeatherAnimation(_weather?.mainCondition),
+                height: 400,
+              ),
             ),
-            SizedBox(height: 20),
 
-            // Main Condition
-            Text('Main Condition', style: TextStyle(fontSize: 24)),
-            Text(
-              _weather?.mainCondition ?? "Unknown",
-              style: TextStyle(fontSize: 36),
+            // Temperature and Main Condition
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${_weather?.temperature.round() ?? "??"}°F",
+                      style: TextStyle(fontSize: 48, color: Colors.white),
+                    ),
+                    Text(
+                      _weather?.mainCondition ?? "Unknown",
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
