@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:lottie/lottie.dart";
 import "package:minimalist_weather/models/weather_model.dart";
 import "package:minimalist_weather/services/weather_service.dart";
 import '../secrets.dart';
@@ -36,6 +37,24 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   // Weather Animations
+  String getWeatherAnimation(String? mainCondition) {
+    if (mainCondition == null) return 'assets/loading.json';
+
+    return switch (mainCondition) {
+      "clouds" => 'assets/cloud.json',
+      "mist" => 'assets/cloud.json',
+      "smoke" => 'assets/cloud.json',
+      "haze" => 'assets/cloud.json',
+      "dust" => 'assets/cloud.json',
+      "fog" => 'assets/cloud.json',
+      "rain" => 'assets/rain.json',
+      "drizzle" => 'assets/rain.json',
+      "shower rain" => 'assets/rain.json',
+      "thunderstorm" => 'assets/thunder.json',
+      "clear" => 'assets/sunny.json',
+      _ => 'assets/cloud.json',
+    };
+  }
 
   // Initial State
   @override
@@ -53,6 +72,12 @@ class _WeatherPageState extends State<WeatherPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Animated Weather Icon
+            Lottie.asset(
+              getWeatherAnimation(_weather?.mainCondition),
+              height: 200,
+            ),
+
             // City Name
             Text('City Name', style: TextStyle(fontSize: 24)),
             Text(
