@@ -15,7 +15,7 @@ class WeatherService {
   // Asynchronous Function to Fetch Weather Data
   Future<Weather> getWeather(String cityName) async {
     // Form URL String and Send Request
-    final url = '$baseURL?q=$cityName&appid=$apiKey&units=metric';
+    final url = '$baseURL?q=$cityName&appid=$apiKey&units=imperial';
     final response = await http.get(Uri.parse(url));
 
     // Check if weather data loaded sucessfully
@@ -27,7 +27,7 @@ class WeatherService {
     }
   }
 
-  // Asynchronous Function to Fetch Current City
+  // Asynchronous Function to Fetch Current City using GeoLocator
   Future<String> getCurrentCity() async {
     // Get location permission from the user
     LocationPermission permission = await Geolocator.checkPermission();

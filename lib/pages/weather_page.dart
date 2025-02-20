@@ -12,6 +12,8 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   // Get Data using OpenWeatherMap API
+  // For API Key, create secrets.dart in the lib directory,
+  // with this line: const String apiKey = "YOUR_API_KEY";
   final _weatherService = WeatherService(apiKey: apiKey);
   Weather? _weather;
 
@@ -62,7 +64,7 @@ class _WeatherPageState extends State<WeatherPage> {
             // Temperature
             Text('Temperature', style: TextStyle(fontSize: 24)),
             Text(
-              "${_weather?.temperature.round() ?? "??"}°C",
+              "${_weather?.temperature.round() ?? "??"}°F",
               style: TextStyle(fontSize: 36),
             ),
             SizedBox(height: 20),
