@@ -4,6 +4,9 @@ A new Flutter project that provides a simple, minimalist weather map. Enter a ci
 The project includes a WeatherService class to handle API interactions and a WeatherModel class to represent temperature and weather conditions.
 Animations are from the Lottie library, used for the weather icons.
 
+![Flutter](https://img.shields.io/badge/-Flutter-05122A?style=flat-square&logo=Flutter&color=2a2e34) 
+![Dart](https://img.shields.io/badge/-Dart-05122A?style=flat-square&logo=Dart&color=2a2e34)
+
 <img src="images/WeatherAppMockup.png" alt="Weather App Mockup" width="600px">
 
 ## Flutter Guide
